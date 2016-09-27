@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Cat Lister</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
+   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>
+  <style>
+
+
+
+    .col-*{
+            padding-left:10;
+            padding-right:10;
+          }
+    #catContainer{
+      max-width: 1800px;
+      margin:auto;
+    }    
+    h4{margin-left:.5em;}
+    .fa-mars{
+      color: #89cff0 }
+    .fa-venus{
+      color: #ff69b4}
+    }
+    .tag{
+      float:right;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+
+<!-- <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Sort functions will go up here</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav> -->
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+<div id="container" class="container-fluid bg-3 text-center">
+  <h3>Cats!</h3><br>
+    
+  <div class="">
+  <div id="catContainer" class="k row">
+    
+    
+
+ 
+  </div></div>
+</div>
+ 
+
+</body>
+
+
+
+
+
+<script> 
+  
+var cats;
+var htmlText = '';
+$.getJSON("Python/cats.json", function(json){
+    cats = json;
+
+var sortByProperty = function (property) {
+    return function (x, y) {
+        return ((x[property] === y[property]) ? 0 : ((x[property] > y[property]) ? 1 : -1));
+    };
+};  
+  
+cats = cats.sort(sortByProperty('Name'));
+  
+  
+  for ( var cat in cats ) {
+    var label = "success"
+    var gender = ""
+    if (cats[cat].Location == "Outreach"){
+      label = "warning"
+    }
+    if (cats[cat].Location == "Foster"){
+      label = "info"
+    }
+    if (cats[cat].Location == "CourtesyPost"){
+      label = "default"
+    }
+    if (cats[cat].Gender == "Female"){
+      gender = '<i class="fa fa-venus"></i>' + cats[cat].Gender
+    }
+    if (cats[cat].Gender == "Male"){
+      gender = '<i class="fa fa-mars"></i>' + cats[cat].Gender
+    }
+    htmlText += ' <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2"> <div class="card catCard" onclick="location.href=\''+ cats[cat].Link + "\'\" style=\"cursor:pointer;\">";
+    htmlText += '<img src="' + cats[cat].ImgUrl + '" class="img-responsive catPic" style="width:100%" alt="Cat Picture">';
+    htmlText += '<h4 class="card-head">'+ cats[cat].Name +'</h4>';
+    htmlText += '<div class="card-block "> <span class="tag tag-'+ label +'">' + cats[cat].Location +'</span><br><p>'+ gender +'</p><p>'+ cats[cat].Breed+'</p></div>';
+    htmlText += '</div></div>';
+};
+  
+$('#catContainer').append(htmlText);
+  
+  
+});
+ 
+  
+  
+ 
+
+
+  
+</script>
+</html>
