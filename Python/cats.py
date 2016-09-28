@@ -26,7 +26,8 @@ for cat in AHSCats:
       cat["Gender"] = "Female"
     if (cat["Gender"] == "M"):
       cat["Gender"] = "Male"
-    cat["ImgUrl"] = u'http://www.animalhumanesociety.org/sites/default/files/imagecache/animal_detail_thumb_161/adoption/images/large/'+cat['ID']+u'-1.jpg'
+      cat["Favorite"] = "True"
+    cat["ImgUrl"] = u'https://www.animalhumanesociety.org/sites/default/files/imagecache/animal_detail_large_360_x_270/adoption/images/large/'+cat['ID']+u'-1.jpg'
     cat["Link"] = u'http://www.animalhumanesociety.org/adoption/detail/' + cat['ID'] + u'/'
 cats = FRCats + AHSCats
 with open('cats.json', 'w') as outfile:
